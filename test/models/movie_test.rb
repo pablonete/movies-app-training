@@ -6,4 +6,14 @@ class MovieTest < ActiveSupport::TestCase
     assert_equal movie.title, "Parasite"
     assert_equal movie.director, "Bong Joon-ho"
   end
+
+  test 'movie requires a title that is not whitespaces' do
+    movie = Movie.new(title: " ")
+    refute_predicate movie, :valid?
+  end
+
+  test 'movie requires a title' do
+    movie = Movie.new(director: "Test")
+    refute_predicate movie, :valid?
+  end
 end
