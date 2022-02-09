@@ -3,8 +3,8 @@
 <ul>
   <% movies.each do |movie| %>
     <li>
-      <%= link_to movie.title, movie_path(movie.id) %> by <%= movie.director %>
+      <%= link_to movie.title, movie %> by <%= movie.director %>
     </li>
   <% end %>
 </ul>
-<%= button_to "Add new movie", "movies/new", method: :get %>
+<%= button_to "Add new movie", new_movie_path, method: :get %>

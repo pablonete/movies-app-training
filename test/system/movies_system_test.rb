@@ -30,12 +30,12 @@ class MoviesSystemTest < ApplicationSystemTestCase
   end
 
   test "adding a new movie" do
-    visit "/movies"
+    visit movies_path
 
     assert_button "Add new movie"
     click_on "Add new movie"
     
-    assert_current_path "/movies/new"
+    assert_current_path new_movie_path
     assert_selector "form.new_movie"
   end
 end
