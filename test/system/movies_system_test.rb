@@ -37,5 +37,24 @@ class MoviesSystemTest < ApplicationSystemTestCase
     
     assert_current_path new_movie_path
     assert_selector "form.new_movie"
+
+    fill_in :movie_title, with: "Drop Dead Fred"
+    fill_in :movie_director, with: "James Cameron"
+    fill_in :movie_year, with: 1997
+
+    click_on "Create"
+
+    # TODO assert_current_path "/movies/"
+    assert_selector "h1", text: "Drop Dead Fred"
+    assert_text "James Cameron"
+  end
+
+  test "cannot add a new movie without title" do
+    visit new_movie_path
+
+    click_on "Create"
+
+    # It should fail and stay on the create page
+    assert_current_path new_movie_path
   end
 end
