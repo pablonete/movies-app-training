@@ -3,9 +3,7 @@
 <ul>
   <% movies.each do |movie| %>
     <li>
-      <a href="<%= movie_path(movie.id) %>">
-        <%= movie.title %>
-      </a> by <%= movie.director %>
+      <%= link_to movie.title, movie_path(movie.id) %> by <%= movie.director %>
     </li>
   <% end %>
 </ul>
