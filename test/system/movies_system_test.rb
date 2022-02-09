@@ -28,4 +28,14 @@ class MoviesSystemTest < ApplicationSystemTestCase
     assert_text "Titanic"
     assert_text "James Cameron"
   end
+
+  test "adding a new movie" do
+    visit "/movies"
+
+    assert_button "Add new movie"
+    click_on "Add new movie"
+    
+    assert_current_path "/movies/new"
+    assert_selector "form.new_movie"
+  end
 end
