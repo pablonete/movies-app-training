@@ -1,7 +1,7 @@
 class Movie < ApplicationRecord
   validates :title, presence: true
 
-  enum :color_format, [:color, :black_and_white, :sepia]
+  enum color_format: [:color, :black_and_white, :sepia]
 
   # Make a method that returns an array of just movie titles.
   def self.titles
