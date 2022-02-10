@@ -8,7 +8,7 @@ class MoviesController < ApplicationController
   end
 
   def new
-    render locals: { movie: Movie.new }
+    render "form", locals: { movie: Movie.new }
   end
 
   def create
@@ -17,13 +17,13 @@ class MoviesController < ApplicationController
       movie.save
       redirect_to movie
     else
-      render "new", locals: { movie: movie }
+      render "form", locals: { movie: movie }
       # TODO Show movie.errors.full_messages
     end
   end
 
   def edit
-    render "new", locals: { movie: Movie.find(params["id"]) }
+    render "form", locals: { movie: Movie.find(params["id"]) }
   end
 
   def update
@@ -33,7 +33,7 @@ class MoviesController < ApplicationController
       movie.save
       redirect_to movie
     else
-      render "new", locals: { movie: movie }
+      render "form", locals: { movie: movie }
       # TODO Show movie.errors.full_messages
     end
 
