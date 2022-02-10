@@ -7,6 +7,10 @@ class MoviesController < ApplicationController
     render locals: { movie: Movie.find(params["id"]) }
   end
 
+  def new
+    render locals: { movie: Movie.new }
+  end
+
   def create
     movie_params = params.require(:movie).permit(:title, :director, :year)
     movie = Movie.new(movie_params)
@@ -14,8 +18,8 @@ class MoviesController < ApplicationController
       movie.save
       redirect_to movie
     else
-      # TODO Show movie.errors.error_messages
-      redirect_to new_movie_path 
+      render "new", locals: { movie: movie }
+      # TODO Show movie.errors.full_messages
     end
   end
 end
