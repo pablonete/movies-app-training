@@ -36,9 +36,10 @@ class MoviesController < ApplicationController
       render "form", locals: { movie: movie }
       # TODO Show movie.errors.full_messages
     end
-
   end
 
+  private
+  
   def movie_params
     params.require(:movie).permit(:title, :director, :year)
   end
