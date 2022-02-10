@@ -12,7 +12,6 @@ class MoviesController < ApplicationController
   end
 
   def create
-    movie_params = params.require(:movie).permit(:title, :director, :year)
     movie = Movie.new(movie_params)
     if movie.valid?
       movie.save
@@ -21,5 +20,26 @@ class MoviesController < ApplicationController
       render "new", locals: { movie: movie }
       # TODO Show movie.errors.full_messages
     end
+  end
+
+  def edit
+    render "new", locals: { movie: Movie.find(params["id"]) }
+  end
+
+  def update
+    movie = Movie.find(params["id"])
+    movie.update_attributes(movie_params)
+    if movie.valid?
+      movie.save
+      redirect_to movie
+    else
+      render "new", locals: { movie: movie }
+      # TODO Show movie.errors.full_messages
+    end
+
+  end
+
+  def movie_params
+    params.require(:movie).permit(:title, :director, :year)
   end
 end

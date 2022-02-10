@@ -54,7 +54,23 @@ class MoviesSystemTest < ApplicationSystemTestCase
 
     click_on "Create"
 
-    # It should fail and stay on the create page
-    assert_current_path new_movie_path
+    # It should fail and stay on the form page
+    assert_selector "form.new_movie"
+  end
+
+  test "editing a new movie" do
+    movie = Movie.create(title: "A Movie To Edit")
+
+    visit movie_path(movie.id)
+
+    click_on "Edit Movie"
+
+    assert_selector "form.edit_movie"
+
+    fill_in "Title", with: "Edited Movie"
+
+    click_on "Update"
+
+    assert_text "Edited Movie"
   end
 end
