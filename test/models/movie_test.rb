@@ -41,9 +41,9 @@ class MovieTest < ActiveSupport::TestCase
   end
 
   test 'get movies with more than certain likes' do
-    a = create(:movie, title: "a", facebook_likes: 100)
-    c = create(:movie, title: "c", facebook_likes: 3)
-    b = create(:movie, title: "b", facebook_likes: 20)
+    a = create(:movie, facebook_likes: 100)
+    c = create(:movie, facebook_likes: 3)
+    b = create(:movie, facebook_likes: 20)
 
     assert_equal 1, Movie.count_above_likes(20)
   end
