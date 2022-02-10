@@ -1,17 +1,6 @@
 require 'test_helper'
 
-# TODO Move to own file
-FactoryBot.define do
-  factory :movie do
-    title { Faker::Movie.title }
-    director { Faker::Superhero.name }
-  end
-end
-
 class MovieTest < ActiveSupport::TestCase
-  # Move to new base class
-  include FactoryBot::Syntax::Methods
-
   test 'movie is valid with a title' do
     movie = Movie.new(title: "Parasite", director: "Bong Joon-ho")
     assert_equal movie.title, "Parasite"
