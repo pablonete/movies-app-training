@@ -2,11 +2,9 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 
-# Register factories, is this the best way to do it? Can we pull the whole directory?
-require_relative './factories/movies_factory'
-
 class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
+  FactoryBot.reload
 
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
