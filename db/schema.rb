@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_10_193441) do
+ActiveRecord::Schema.define(version: 2022_02_10_194241) do
 
   create_table "directors", force: :cascade do |t|
     t.string "name"
@@ -22,10 +22,10 @@ ActiveRecord::Schema.define(version: 2022_02_10_193441) do
     t.integer "facebook_likes"
     t.string "year"
     t.string "plot_keywords"
-    t.string "director"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "color_format", default: 0
+    t.integer "director_id"
   end
 
 end
