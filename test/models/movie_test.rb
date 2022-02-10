@@ -47,4 +47,8 @@ class MovieTest < ActiveSupport::TestCase
 
     assert_equal 1, Movie.count_above_likes(20)
   end
+
+  test 'we can create a movie with a factory' do
+    assert_predicate create(:movie), :valid?
+  end
 end
