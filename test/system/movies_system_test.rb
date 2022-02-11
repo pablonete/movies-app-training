@@ -41,7 +41,7 @@ class MoviesSystemTest < ApplicationSystemTestCase
     assert_selector "form.new_movie"
 
     fill_in :movie_title, with: "Drop Dead Fred"
-    find("#movie_director_id").find(:option, james.name).select_option
+    select james.name, from: "Director"
     fill_in :movie_year, with: 1997
 
     click_on "Create"
