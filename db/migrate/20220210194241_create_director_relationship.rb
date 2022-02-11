@@ -1,6 +1,6 @@
 class CreateDirectorRelationship < ActiveRecord::Migration[6.0]
   def change
-    add_column :movies, :director_id, :integer
+    add_reference :movies, :director, foreign_key: true
 
     names = Movie.all.pluck(:director).uniq
     directors_by_name = {}

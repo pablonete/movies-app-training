@@ -2,9 +2,10 @@ require 'test_helper'
 
 class MovieTest < ActiveSupport::TestCase
   test 'movie is valid with a title' do
-    movie = build(:movie, title: "Parasite", director: "Bong Joon-ho")
+    director = create(:director, name: "Bong Joon-ho")
+    movie = build(:movie, title: "Parasite", director: director)
     assert_equal movie.title, "Parasite"
-    assert_equal movie.director, "Bong Joon-ho"
+    assert_equal movie.director.name, "Bong Joon-ho"
   end
 
   test 'movie requires a title that is not whitespaces' do
@@ -13,7 +14,7 @@ class MovieTest < ActiveSupport::TestCase
   end
 
   test 'movie requires a title' do
-    movie = build(:movie, title: nil, director: "Test")
+    movie = build(:movie, title: nil)
     refute_predicate movie, :valid?
   end
 

@@ -1,6 +1,8 @@
 class Movie < ApplicationRecord
   validates :title, presence: true
 
+  belongs_to :director
+  
   enum color_format: [:color, :black_and_white, :sepia]
 
   # Make a method that returns an array of just movie titles.
