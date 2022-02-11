@@ -5,7 +5,7 @@
   </div>
   <div>
     <%= f.label :director %>
-    <%= f.text_field :director %>
+    <%= f.collection_select :director_id, Director.alphabetically, :id, :name, prompt: true %>
   </div>
   <div>
     <%= f.label :year %>
