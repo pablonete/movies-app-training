@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class MoviesSystemTest < ApplicationSystemTestCase
   test "visiting the show" do
-    movie = Movie.create!(title: "Parasite", director: "Bong Joon-ho")
+    movie = Movie.create!(title: "Parasite", director: create(:director, name: "Bong Joon-ho"))
     visit movie_path(movie.id)
 
     assert_text "Parasite"
@@ -10,7 +10,7 @@ class MoviesSystemTest < ApplicationSystemTestCase
   end
 
   test "visiting the show for a different movie" do
-    movie = Movie.create!(title: "Titanic", director: "James Cameron")
+    movie = Movie.create!(title: "Titanic", director: create(:director, name: "James Cameron"))
     visit movie_path(movie.id)
 
     assert_text "Titanic"
@@ -18,8 +18,8 @@ class MoviesSystemTest < ApplicationSystemTestCase
   end
 
   test "visiting the index page" do
-    Movie.create!(title: "Parasite", director: "Bong Joon-ho")
-    Movie.create!(title: "Titanic", director: "James Cameron")
+    Movie.create!(title: "Parasite", director: create(:director, name: "Bong Joon-ho"))
+    Movie.create!(title: "Titanic", director: create(:director, name: "James Cameron"))
 
     visit movies_path
 
@@ -30,16 +30,18 @@ class MoviesSystemTest < ApplicationSystemTestCase
   end
 
   test "adding a new movie" do
+    james = create(:director, name: "James Cameron")
+
     visit movies_path
 
     assert_button "Add new movie"
     click_on "Add new movie"
-    
+
     assert_current_path new_movie_path
     assert_selector "form.new_movie"
 
     fill_in :movie_title, with: "Drop Dead Fred"
-    fill_in :movie_director, with: "James Cameron"
+    find("#movie_director_id").find(:option, james.name).select_option
     fill_in :movie_year, with: 1997
 
     click_on "Create"
@@ -59,7 +61,7 @@ class MoviesSystemTest < ApplicationSystemTestCase
   end
 
   test "editing a new movie" do
-    movie = Movie.create(title: "A Movie To Edit")
+    movie = create(:movie, title: "A Movie To Edit")
 
     visit movie_path(movie.id)
 
