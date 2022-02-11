@@ -3,6 +3,8 @@ class CreateDirectors < ActiveRecord::Migration[6.0]
     create_table :directors do |t|
       t.string :name
       t.integer :age
+
+      t.timestamps
     end
   end
 end
