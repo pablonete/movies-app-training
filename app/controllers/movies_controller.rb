@@ -17,8 +17,7 @@ class MoviesController < ApplicationController
       movie.save
       redirect_to movie
     else
-      render "new", locals: { movie: movie }
-      # TODO Show movie.errors.full_messages
+      render "new", locals: { movie: movie }, status: :unprocessable_entity
     end
   end
 
@@ -33,8 +32,7 @@ class MoviesController < ApplicationController
       movie.save
       redirect_to movie
     else
-      render "edit", locals: { movie: movie }
-      # TODO Show movie.errors.full_messages
+      render "edit", locals: { movie: movie }, status: :unprocessable_entity
     end
   end
 
